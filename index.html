@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Barcode Generator</title>
+        <link rel="stylesheet" href="./build/styles/style.min.css" />
+    </head>
+    <body>
+        <div id="app" class="app p-4 lg:p-8">
+            <div class="flex flex-col items-start justify-center lg:flex-row">
+                <form action="" class="mb-4 w-full lg:mb-0 lg:mr-4 print:hidden">
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_barcode" class="mb-2 block text-sm font-bold text-gray-900">Barcode</label>
+                        <input type="text" id="input_barcode" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Barcode" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_number_part" class="mb-2 block text-sm font-bold text-gray-900">Part Number</label>
+                        <input type="text" id="input_number_part" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Part Number" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_specification" class="mb-2 block text-sm font-bold text-gray-900">Specification</label>
+                        <input type="text" id="input_specification" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Specification" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_po_type" class="mb-2 block text-sm font-bold text-gray-900">PO Type</label>
+                        <input type="text" id="input_po_type" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="PO Type" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_number_lot" class="mb-2 block text-sm font-bold text-gray-900">Lot Number</label>
+                        <input type="text" id="input_number_lot" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Lot Number" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_quantity" class="mb-2 block text-sm font-bold text-gray-900">Quantity</label>
+                        <input type="text" id="input_quantity" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Quantity" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_vendor_pn" class="mb-2 block text-sm font-bold text-gray-900">Vendor P/N</label>
+                        <input type="text" id="input_vendor_pn" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Vendor P/N" required="" />
+                    </div>
+
+                    <div class="mb-4 w-full last:mb-0">
+                        <label for="input_vendor_code" class="mb-2 block text-sm font-bold text-gray-900">Vendor Code</label>
+                        <input type="text" id="input_vendor_code" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="Vendor Code" required="" />
+                    </div>
+
+                    <button id="button_print" type="button" class="button_print rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">PRINT</button>
+                </form>
+
+                <div class="sticky top-4 w-full lg:top-8">
+                    <div id="previews" class="flex h-max w-full flex-col items-center justify-center rounded-lg border border-gray-200 p-4 print:rounded-none print:border-0 print:p-0">
+                        <canvas id="barcode" class="barcode mb-4 max-w-full"></canvas>
+
+                        <div class="flex w-full flex-row items-end justify-center">
+                            <table class="mr-4 w-full text-xs font-bold">
+                                <tbody class="align-baseline">
+                                    <tr>
+                                        <td>PART NUMBER</td>
+                                        <td>:</td>
+                                        <td id="part-number">DE41-00022A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SPECIFICATION</td>
+                                        <td>:</td>
+                                        <td id="specification">POWER/GRAY 220V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PO TYPE</td>
+                                        <td>:</td>
+                                        <td id="po-type">E1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LOT NUMBER</td>
+                                        <td>:</td>
+                                        <td id="lot-number">A110001001</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QUANTITY</td>
+                                        <td>:</td>
+                                        <td id="quantity">004000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VENDOR P/N</td>
+                                        <td>:</td>
+                                        <td id="vendor-pn">ABCDEFGHIJ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VENDOR/CODE</td>
+                                        <td>:</td>
+                                        <td id="vendor-code">E100-B0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="flex flex-col items-end justify-end text-center">
+                                <img class="mb-4 h-16 w-16 shrink-0 grow-0 text-transparent" src="./assets//images/qrcode_w32.png" alt="W32" width="64" height="64" />
+
+                                <div class="flex flex-row items-center justify-center">
+                                    <div class="mr-1 flex h-full shrink-0 grow-0 items-center justify-center bg-black px-2 py-3 text-xl text-white">W32</div>
+                                    <div class="flex flex-col items-center justify-center">
+                                        <div class="mb-1 w-full bg-black text-white">MSL 1</div>
+                                        <div class="flex flex-row items-center justify-center">
+                                            <div class="mr-1 bg-black p-1 text-xs text-white">RoHS</div>
+                                            <div class="bg-black p-1 text-xs text-white">HF</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./build/scripts/script.min.js"></script>
+    </body>
+</html>
